@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Gamespace;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,37 +20,43 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
-        if (cameraController.bTweening)
+
+        if (!GAMECONSTANTS.ROUND_WON)
         {
-            return;
+            if (cameraController.bTweening)
+            {
+                return;
+            }
+            else
+            {
+                if (Input.GetKeyDown(keycodeToIndicateNorth))
+                {
+                    levelManager.DirectTo(Gamespace.EDirection.North);
+                    //cameraController.PanCamera(EPanningDirection.UP);
+                }
+
+                else if (Input.GetKeyDown(keycodeToIndicateSouth))
+                {
+                    levelManager.DirectTo(Gamespace.EDirection.South);
+                    //cameraController.PanCamera(EPanningDirection.DOWN);
+                }
+
+                else if (Input.GetKeyDown(keycodeToIndicateWest))
+                {
+                    levelManager.DirectTo(Gamespace.EDirection.West);
+                    //cameraController.PanCamera(EPanningDirection.LEFT
+                    //    );
+                }
+
+                else if (Input.GetKeyDown(keycodeToIndicateEast))
+                {
+                    levelManager.DirectTo(Gamespace.EDirection.East);
+                    //cameraController.PanCamera(EPanningDirection.RIGHT);
+                }
+            }
         }
-        else
-        {
-            if (Input.GetKeyDown(keycodeToIndicateNorth))
-            {
-                levelManager.DirectTo(Gamespace.EDirection.North);
-                //cameraController.PanCamera(EPanningDirection.UP);
-            }
 
-            else if (Input.GetKeyDown(keycodeToIndicateSouth))
-            {
-                levelManager.DirectTo(Gamespace.EDirection.South);
-                //cameraController.PanCamera(EPanningDirection.DOWN);
-            }
-
-            else if (Input.GetKeyDown(keycodeToIndicateWest))
-            {
-                levelManager.DirectTo(Gamespace.EDirection.West);
-                //cameraController.PanCamera(EPanningDirection.LEFT
-                //    );
-            }
-
-            else if (Input.GetKeyDown(keycodeToIndicateEast))
-            {
-                levelManager.DirectTo(Gamespace.EDirection.East);
-                //cameraController.PanCamera(EPanningDirection.RIGHT);
-            }
-        }
+        
         
     }
 

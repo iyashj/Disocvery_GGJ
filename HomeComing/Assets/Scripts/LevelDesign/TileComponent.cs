@@ -7,9 +7,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class TileComponent : MonoBehaviour
 {
-
     public LevelDesigner levelDesigner;
-
 
     // intrinsic index of tile
     public int tileIndex;

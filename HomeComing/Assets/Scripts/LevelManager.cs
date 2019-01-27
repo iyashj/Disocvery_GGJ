@@ -205,4 +205,27 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+
+
+    IEnumerator FadingIn(int _nextRoomIndex)
+    {
+        StartCoroutine(FadeIn(fadeImage));
+        yield return new WaitForSeconds(fadeTime);
+        ClearRoom();
+        StartCoroutine(PlayEnteringRoomCue(_nextRoomIndex));
+    }
+
+
+    IEnumerator FadingOut(int _enteredRoomIndex)
+    {
+        inputController.bDisableController = true;
+        EnterRoom(_enteredRoomIndex);
+        StartCoroutine(FadeOut(fadeImage));
+        yield return new WaitForSeconds(fadeTime);
+        _playerTrack.text = (GAMECONSTANTS.PLAYER_PROGRESS_TRACK).ToString();
+        inputController.bDisableController = false;
+    }
+
+
+
 }
